@@ -1,0 +1,71 @@
+<240726 - intelliJ(백앤드)랑 DB연결> 
+https://mvnrepository.com/artifact/mysql/mysql-connector-java/8.0.33 
+랑
+https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter/2.2.2
+가져오ㅓㅏ서 intellij 디팬던시에 추가
+
+1. application-secret.yml 생성! url 은 앤드포인트:3306
+
+
+하나의 interface 와 하나의 mappers의 xml은 꼭 세트! -> xml에서 연결도 해줘야함 
+mapper의 find면 xml에서 select 로 작성
+mapper의 int save면 xml에서 insert 로 작성
+select만 resultType 
+insert, update, delete는 parameterType //return이 int
+
+
+<무조건>
+controller -의존-> service -의존-> repository -전송-> DB
+
+Requst->
+                controller -> service -> Mapper -> .xml -> DB
+          	              //DTO     //Enitity
+Response<-
+
+
+Entity : DB 관련 데이터
+DTO : 클라이언트 관련 데이터
+
+
+
+xml의 쿼리 실행 결과를 (객체) -> Mapper interface에서 List 에 담는다 -> 
+
+
+
+
+<순서>
+3000번 react의 axios를 사용해서 -> 8080 springboot로 보냄!!
+8080 springboot에서 controller -> service -> Mapper -> .xml -> db한테 보냄
+
+
+<여러개의 DTO 묶는 방법>
+1. 패키지
+2. 내부클래스
+
+
+
+
+<내부클래스>
+public class A {
+   public class A2 {
+	}
+}
+
+A a = new A();
+A.A2 a2 = new a.A2();
+ => A.A2 a2 = new (new A()).A2(); 이랑 동일한데 지저분하니까
+
+public class A {
+   public static class A2 {
+	}
+}
+
+A.A2 a2 = new A.A2();
+
+
+
+<return이란?>
+매서드를 실행하고 반환되는 값 // 메서드에서의 return 에 있는 거를 실행해서 받겠따
+
+
+센텀 신세계, 롯데백화점 부산본점
