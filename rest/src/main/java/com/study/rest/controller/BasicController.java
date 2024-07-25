@@ -1,8 +1,6 @@
 package com.study.rest.controller;
 
-import com.study.rest.dto.ProductDto;
-import com.study.rest.dto.ReqProductDto;
-import com.study.rest.dto.ReqStudentDto;
+import com.study.rest.dto.*;
 import com.study.rest.service.ProductService;
 import com.study.rest.service.ProductServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -72,5 +70,20 @@ public class BasicController {
     @GetMapping("/api/v1/colors")
     public ResponseEntity<?> colorListApi() {
         return ResponseEntity.ok().body(productService.getColorListAll());
+    }
+
+    //5
+    @CrossOrigin
+    @PostMapping("/api/v1/size")
+    public ResponseEntity<?> registerSizeApi(@RequestBody ReqRegisterSizeDto reqRegisterSizeDto) {
+        log.info("{}", reqRegisterSizeDto);
+        return ResponseEntity.ok().body(productService.registerSize(reqRegisterSizeDto));
+    }
+
+    @CrossOrigin
+    @PostMapping("api/v1/color")
+    public ResponseEntity<?> registerColorApi(@RequestBody ReqRegisterColorDto reqRegisterColorDto) {
+        log.info("{}", reqRegisterColorDto);
+        return ResponseEntity.ok().body(productService.registerColor(reqRegisterColorDto));
     }
 }

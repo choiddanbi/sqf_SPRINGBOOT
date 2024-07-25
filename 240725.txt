@@ -1,0 +1,23 @@
+Ctrl + Alt + s
+
+
+<생성 순서>
+REACT 에서 
+ 1. .jsx 로 페이지 생성 + App.js 에서 라우터 설정
+
+
+SPRINGBOOT 에서 (dto)
+ 1. cotrolloer 랑 Dto 만들기
+ 2. service 인터페이스 랑 그걸 받은 애도 생성(ctrl + i 로 오버라이드) 랑 repository (mapper)
+ 3. repository(mapper) 에서 xml 바로 생성하기 해도 되고 직접 xml가서 sql 생성해도 되고!!!
+
+
+
+<실행 순서>
+REACT -> SPRINGBOOT ( controller, service, repository_mapper, xml ) -> DB
+
+
+DB (엔티티)
+
+insert, update, delete >> return 은 무조건 int (성공횟수) 
+ -> 그래서 CommonResponseDto 로 만들어서 공통으로 씀!!!

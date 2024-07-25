@@ -9,4 +9,6 @@ public class NewTestServiceImpl implements TestService {
     public void test() {
         System.out.println("새로운 단위 테스트 실행");
     }
+
+
 }

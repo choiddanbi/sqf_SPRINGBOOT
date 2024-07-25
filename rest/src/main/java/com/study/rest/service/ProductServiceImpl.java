@@ -1,8 +1,6 @@
 package com.study.rest.service;
 
-import com.study.rest.dto.CommonResponseDto;
-import com.study.rest.dto.ProductDto;
-import com.study.rest.dto.SizeDto;
+import com.study.rest.dto.*;
 import com.study.rest.entity.Color;
 import com.study.rest.entity.Size;
 import com.study.rest.repository.ColorMapper;
@@ -43,5 +41,24 @@ public class ProductServiceImpl implements ProductService {
 
         /*Product product = register.toEntity();
         return productMapper.save(product) > 0;*/
+    }
+
+    //11
+    @Override
+    public CommonResponseDto registerSize(ReqRegisterSizeDto reqRegisterSizeDto) {
+        /* 아래꺼랑 동일한 코드
+        Size size = Size.builder()
+                .sizeName(reqRegisterSizeDto.getSizeName())
+                .build();
+
+        int successCount = sizeMapper.save(size);
+        return CommonResponseDto.ofDefault(successCount);*/
+
+        return CommonResponseDto.ofDefault(sizeMapper.save(reqRegisterSizeDto.toEntity()));
+    }
+
+    @Override
+    public CommonResponseDto registerColor(ReqRegisterColorDto reqRegisterColorDto) {
+        return CommonResponseDto.ofDefault(colorMapper.save(reqRegisterColorDto.toEntity()));
     }
 }

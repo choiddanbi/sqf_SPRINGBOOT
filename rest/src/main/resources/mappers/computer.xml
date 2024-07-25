@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.rest.repository.ComputerMapper">
+
+    <!--parameterType 은 생략 가능-->
+    <insert id="save" parameterType="com.study.rest.entity.Computer">
+        insert into computer_tb
+        values(0, #{company}, #{cpu}, #{ram}, #{ssd})
+    </insert>
+    <select id="findComputerByCompanyAndCpu"
+            parameterType="com.study.rest.entity.Computer"
+            resultType="com.study.rest.entity.Computer">
+        select
+            computerId,
+            company,
+            cpu,
+            ram,
+            ssd
+        from
+            computer_tb
+        where
+            company like concat("%", #{company}, "%")
+            and cpu like concat("%", #{cpu}, "%")
+        order by
+            computerId
+    </select>
+
+</mapper>
