@@ -2,8 +2,10 @@ package com.study.rest.controller;
 
 import com.study.rest.dto.ReqGetListDto;
 import com.study.rest.dto.ReqRegisterComputerDto;
+import com.study.rest.dto.ReqUpdateComputerDto;
 import com.study.rest.service.ComputerServiceImpl;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,8 +27,10 @@ public class ComputerController {
     }
 
 
-    public ResponseEntity<?> modifyApi() {
-        return ResponseEntity.ok().body(null);
+    //삭제
+    @PutMapping("/computer/{computerId}")
+    public ResponseEntity<?> modifyApi(@PathVariable int computerId, @RequestBody ReqUpdateComputerDto reqDto) {
+        return ResponseEntity.ok().body(computerService.updateComputer(reqDto));
     }
 
     // DB에서 가져오기 -> 목록창에 보임
@@ -37,12 +41,17 @@ public class ComputerController {
         return ResponseEntity.ok().body(computerService.getComputerList(reqDto));
     }
 
-    public ResponseEntity<?> getApi() {
-        return ResponseEntity.ok().body(null);
+    // url 의 값이 getApi의 변수로
+    // http://localhost:8080/api/v1/computer/1 or 2 or 3...
+    @GetMapping("/computer/{computerId}")
+    public ResponseEntity<?> getApi(@PathVariable int computerId) {
+        log.info("{}", computerId);
+        return ResponseEntity.ok().body(computerService.getComputer(computerId));
     }
 
-    public ResponseEntity<?> removeApi() {
-        return ResponseEntity.ok().body(null);
-    }
 
+    @DeleteMapping("/computer/{computerId}")
+    public ResponseEntity<?> removeApi(@PathVariable int computerId) {
+        return ResponseEntity.ok().body(computerService.deleteComputer(computerId));
+    }
 }

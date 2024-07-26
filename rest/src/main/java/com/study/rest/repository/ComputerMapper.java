@@ -9,4 +9,7 @@ import java.util.List;
 public interface ComputerMapper {
     int save(Computer computer);
     List<Computer> findComputerByCompanyAndCpu(Computer computer);
+    Computer findComputerById(int id);
+    int delete(int id);
+    int update(Computer computer);
 }
